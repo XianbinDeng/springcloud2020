@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxb.payment.dao.PaymentDao">
+    <insert id="createPayment" parameterType="com.dxb.payment.entity.PaymentModel" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into dxb_payment(orderNo) values(#{orderNo})
+    </insert>
+
+    <resultMap id="PaymentMap" type="com.dxb.payment.entity.PaymentModel">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="orderNo" property="orderNo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getPayment" parameterType="Long" resultMap="PaymentMap">
+        SELECT id,orderNo from dxb_payment where id=#{id}
+
+    </select>
+</mapper>
